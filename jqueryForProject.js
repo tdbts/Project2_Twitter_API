@@ -1,6 +1,8 @@
 jQuery(document).ready(function($) {
 
 	// Make an AJAX request
+	$('#check_it').hide.fadeIn(1000);
+
 	$.ajax({
 
 		// Define the URL being called by AJAX
