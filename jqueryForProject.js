@@ -1,4 +1,4 @@
-jquery(document).ready(function($) {
+jQuery(document).ready(function($) {
 
 	$('h1').fadeOut(1000);
 
