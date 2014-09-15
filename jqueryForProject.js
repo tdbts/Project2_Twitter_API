@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 		// Define the URL being called by AJAX
 		// The '140dev' URL here is merely a placeholder 
 		// When I'm ready, I must change it to call my server
-		url: 'http://tdbts.github.io/Project2_Twitter_API/ajax_response.php',
+		url: 'ajax_response.php',
 
 		// Put the results into the display element
 		success: function(data) {
