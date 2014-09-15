@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
 
 	// Make an AJAX request
 	$('h1').fadeOut(1000);
