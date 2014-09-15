@@ -1,7 +1,7 @@
 jQuery(document).ready(function($) {
 
 	// Make an AJAX request
-	$('#check_it').hide.fadeIn(1000);
+	$('#check_it').fadeOut(1000);
 
 	$.ajax({
 
