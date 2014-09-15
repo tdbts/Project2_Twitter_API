@@ -1,8 +1,8 @@
-$(document).ready(function($) {
+jquery(document).ready(function($) {
 
-	// Make an AJAX request
 	$('h1').fadeOut(1000);
 
+	// Make an AJAX request
 	$.ajax({
 
 		// Define the URL being called by AJAX
