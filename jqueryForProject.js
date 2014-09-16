@@ -18,13 +18,15 @@ jQuery(document).ready(function($) {
 			// Create URL
 			url: 'search_response.php?q=' + search_value, 
 			
-			succcess: function(data) {
+			success: function(data) {
 				
+				console.log("Search for " + search_value + " was successful!");
+				console.log("This is the raw data:<br/><br/" + data);
 				// Display the results
 				$('#ajax_results').html(data);
 			},
 
-			error: function(data) {
+			error: function() {
 				$('#ajax_results').html('Ajax request failed');
 			}
 		});
