@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$('h1').fadeOut(1000).fadeIn(1000);
+	$('#check_it').fadeOut(1000).fadeIn(1000);
 
 	$('#search_button').click(function() {
 
@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 		// Get the value of the input field
 		// Encode it for use in a URL
 		var search_value = encodeURIComponent($('input[name=search_terms]').val());
+		console.log("Searching for " + search_value + ".");
 
 		// Send the search terms to the server in an AJAX request
 		$.ajax({
@@ -20,7 +21,7 @@ jQuery(document).ready(function($) {
 			succcess: function(data) {
 				
 				// Display the results
-				$('#ajax_results').html(data)
+				$('#ajax_results').html(data);
 			},
 
 			error: function(data) {
