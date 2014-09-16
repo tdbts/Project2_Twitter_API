@@ -2,23 +2,30 @@ jQuery(document).ready(function($) {
 
 	$('h1').fadeOut(1000).fadeIn(1000);
 
-	// Make an AJAX request
-	$.ajax({
+	$('#search_button').click(function() {
 
-		// Define the URL being called by AJAX
-		// The '140dev' URL here is merely a placeholder 
-		// When I'm ready, I must change it to call my server
-		url: 'timeline_response.php',
+		// This can take a few seconds so display progress text
+		$('#ajax_results').html('Searching Twitter...');
 
-		// Put the results into the display element
-		success: function(data) {
-			$('#ajax_results').html(data);
-		},
+		// Get the value of the input field
+		// Encode it for use in a URL
+		var search_value = encodeURIComponent($('input[name=search_terms]').val());
 
-		// Display an error message if the request fails
-		error: function(data) {
-			$('#ajax_results').html('Ajax request failed');
-		}
+		// Send the search terms to the server in an AJAX request
+		$.ajax({
+			
+			// Create URL
+			url: 'search_response.php?q=' + search_value, 
+			
+			succcess: function(data) {
+				
+				// Display the results
+				$('#ajax_results').html(data)
+			},
+
+			error: function(data) {
+				$('#ajax_results').html('Ajax request failed');
+			}
+		});
 	});
-
 });
