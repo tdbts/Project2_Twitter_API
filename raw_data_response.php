@@ -1,6 +1,5 @@
-<?php
+<?php 
 
-// Make sure search terms were sent
 if (!empty($_GET['q'])){
 
 	// Strip any dangerous text out of the search
@@ -17,7 +16,7 @@ if (!empty($_GET['q'])){
 		));
 
 	// Run the search with the Twitter API
-	$http_code = $connection->request('GET',$connection->url('1.1/search/tweets'), 
+	$http_code = $connection->request('GET', $connection->url('1.1/search/tweets'), 
 		array('q' => $search_terms, 
 			'count' => 100, 
 			'lang' => 'en', 
@@ -26,24 +25,23 @@ if (!empty($_GET['q'])){
 	// Search was successful
 	if ($http_code == 200) {
 
-		// Extract the tweets from the API response
 		$response = json_decode($connection->response['response'],true);
 		$tweet_data = $response['statuses'];
-
-		// Accumulate tweets from search results
 		$tweet_stream = '';
-		foreach($tweet_data as $tweet) {
-			// Ignore retweets
-			if (isset($tweet['retweeted_status'])) {
-				continue;
-			}
 
-			// Add this tweet's text to the results
-			$tweet_stream .= $tweet['text'].'<br/><br/>';
+		function PrintR($var) {
+			echo '<pre>';
+			print_r($var);
+			echo '</pre>';
 		}
 
-		// Send the result tweets back to the AJAX request
+		foreach($tweet_data as $tweet) {
+
+			$tweet_stream .= PrintR($tweet) . '<br/><br/>';
+		}
+
 		print $tweet_stream;
+	
 
 	// Handle errors from API request
 	}else{
@@ -57,4 +55,4 @@ if (!empty($_GET['q'])){
 	print 'No search terms found';
 }
 
-?> 
+?>

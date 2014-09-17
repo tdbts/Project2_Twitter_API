@@ -1,27 +1,28 @@
 jQuery(document).ready(function($) {
-
+	
 	$('#check_it').fadeOut(1000).fadeIn(1000);
 
-	$('#search_button').click(function() {
+	function getSearchValue() {
+		
+		var search_value = encodeURIComponent($('input[name=search_terms]').val());
+		return search_value;
+	}
 
-		// This can take a few seconds so display progress text
+	function search(searchTerms, searchURL) {
+
 		$('#ajax_results').html('Searching Twitter...');
 
-		// Get the value of the input field
-		// Encode it for use in a URL
-		var search_value = encodeURIComponent($('input[name=search_terms]').val());
-		console.log("Searching for " + search_value + ".");
+		// var search_value = encodeURIComponent($('input[name=search_terms]').val());
+		console.log("Searching for " + searchTerms + ".");
 
-		// Send the search terms to the server in an AJAX request
 		$.ajax({
-			
+
 			// Create URL
-			url: 'search_response.php?q=' + search_value, 
-			
+			url: searchURL + "?q=" + searchTerms, 
+
 			success: function(data) {
 				
-				console.log("Search for " + search_value + " was successful!");
-				console.log("This is the raw data:<br/><br/" + data);
+				console.log("Search for " + searchTerms + " was successful!");
 				// Display the results
 				$('#ajax_results').html(data);
 			},
@@ -30,5 +31,18 @@ jQuery(document).ready(function($) {
 				$('#ajax_results').html('Ajax request failed');
 			}
 		});
+	}
+	
+	$('#search_button').click(function() {
+
+		var search_value = getSearchValue();
+		search(search_value, "search_response.php");
 	});
-});
+
+	$('#raw_data_button').click(function() {
+		
+		var search_value = getSearchValue();
+		search(search_value, "raw_data_response.php");
+	});
+
+}); 	
